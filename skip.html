@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+<link rel="stylesheet" href="fist/css/bootstrap.min.css">
+  <style>
+    button {
+      font-size: 30px;
+    }
+
+    body {
+      background-image: url('fist/2.jpg');
+    }
+  </style>
+  <meta charset="UTF-8">
+  <title>网页安全跳转页面</title>
+</head>
+<center>
+
+  <body>
+
+    <!-- 用于显示读取到的网页内容 -->
+    <div id="content"></div>
+    <i class="bi bi-exclamation-square"></i>
+    <!-- 跳转按钮 -->
+    <h2>你是否同意跳转，如果同意请点下面的继续访问 如果发生任何事情本站均不负责。</h2>
+
+    <h3>网址后面会出现等于号，请忽略他</h3>
+    <button id="go-button">继续访问</button>
+
+   
+    <script>
+      
+      const searchParams = new URLSearchParams(window.location.search);
+
+     
+      const contentDiv = document.getElementById('content');
+      const decodedContent = decodeURIComponent(searchParams.toString());
+      contentDiv.innerHTML = '<h1>' + "你即将访问:" + decodedContent + '</h1>';
+
+      
+      const goButton = document.getElementById('go-button');
+      goButton.addEventListener('click', () => {
+       
+        const url = window.location.search.slice(1);
+        window.location.href = url;
+      });
+    </script>
+  </body>
+</center>
+</html>
